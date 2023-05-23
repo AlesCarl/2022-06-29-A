@@ -26,7 +26,7 @@ public class ItunesDAO {
 			ResultSet res = st.executeQuery();
 
 			while (res.next()) {
-				result.add(new Album(res.getInt("AlbumId"), res.getString("Title")));
+				result.add(new Album(res.getInt("AlbumId"), res.getString("Title"), 0));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -138,5 +138,33 @@ public class ItunesDAO {
 		}
 		return result;
 	}
+	
+	
+	
+	public List<Album> getFilteredAlbums( int n ){
+		final String sql = "select a.`AlbumId`, a.`Title`, count(*) as numSongs "
+				+ "from track t, album a "
+				+ "where a.`AlbumId`=t.`AlbumId` "
+				+ "group by a.`AlbumId`, a.`Title` "
+				+ "having numSongs > ? " ;
+		List<Album> result = new LinkedList<>();
+		
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, n);
+			ResultSet res = st.executeQuery();
+
+			while (res.next()) {
+				result.add(new Album(res.getInt("AlbumId"), res.getString("Title"), res.getInt("numSongs")));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("SQL Error");
+		}
+		return result;
+	}
+	
 	
 }

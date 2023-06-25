@@ -16,6 +16,7 @@ import it.polito.tdp.itunes.model.Track;
 
 public class ItunesDAO {
 	
+	
 	public List<Album> getAllAlbums(){
 		final String sql = "SELECT * FROM Album";
 		List<Album> result = new LinkedList<>();
@@ -36,6 +37,8 @@ public class ItunesDAO {
 		return result;
 	}
 	
+	
+	
 	public List<Artist> getAllArtists(){
 		final String sql = "SELECT * FROM Artist";
 		List<Artist> result = new LinkedList<>();
@@ -55,6 +58,9 @@ public class ItunesDAO {
 		}
 		return result;
 	}
+	
+	
+	
 	
 	public List<Playlist> getAllPlaylists(){
 		final String sql = "SELECT * FROM Playlist";
@@ -99,6 +105,7 @@ public class ItunesDAO {
 		return result;
 	}
 	
+	
 	public List<Genre> getAllGenres(){
 		final String sql = "SELECT * FROM Genre";
 		List<Genre> result = new LinkedList<>();
@@ -118,6 +125,8 @@ public class ItunesDAO {
 		}
 		return result;
 	}
+	
+	
 	
 	public List<MediaType> getAllMediaTypes(){
 		final String sql = "SELECT * FROM MediaType";
@@ -141,12 +150,17 @@ public class ItunesDAO {
 	
 	
 	
+	
+	
+	
+	
 	public List<Album> getFilteredAlbums( int n ){
 		final String sql = "select a.`AlbumId`, a.`Title`, count(*) as numSongs "
 				+ "from track t, album a "
 				+ "where a.`AlbumId`=t.`AlbumId` "
 				+ "group by a.`AlbumId`, a.`Title` "
 				+ "having numSongs > ? " ;
+		
 		List<Album> result = new LinkedList<>();
 		
 		try {

@@ -50,10 +50,11 @@ public class Model {
 		/** VERTICI **/ 
 		Graphs.addAllVertices(this.graph, this.allAlbum);
 		
-		
-		/** archi ORIENTATI **/ 
+ 
+
 		for(Album a1: this.allAlbum) {
 			for(Album a2 : this.allAlbum) {
+				
 				int peso = a1.getNumSongs()-a2.getNumSongs();
 				
 				if(peso > 0) {//nb: con il ">" l'arco va da a2 ad a1 (solo archi che ENTRANO in a1
@@ -64,13 +65,13 @@ public class Model {
 		}
 	
 		System.out.println(this.graph.vertexSet().size());
-		System.out.println(this.graph.edgeSet().size());
+	    System.out.println(this.graph.edgeSet().size());
 
 		
 	}
 	
 	
-	// BILANCIO: sum(archi entranti) - sum(archi uscenti) 
+	//  BILANCIO:  sum( archi entranti ) - sum( archi uscenti ) 
 	private int getBilanci(Album a) {
 		int bilancio = 0; 
 		
@@ -93,19 +94,18 @@ public class Model {
 		List<Album> allVertices = new ArrayList<>(this.graph.vertexSet()); 
 		Collections.sort(allVertices);
 		return allVertices; 
-	}
+	}       
 	
 	
 	private void clearGraph() {
 		this.allAlbum= new ArrayList<>();
 		this.graph= new SimpleDirectedWeightedGraph<>(DefaultWeightedEdge.class);
-
+		
 	}
 	
 	
 	
-	
-	/***************** RICORSIONE:  ******************/ 
+	/*****************  RICORSIONE:  ******************/ 
 	
 	/* 
          percorso da a1 verso a2, con: 
@@ -142,6 +142,7 @@ public class Model {
 			 return; 
 		}
 		
+		
 		/** continuo ad aggiungere elementi in parziale **/ 
 	     List<Album> successori= Graphs.successorListOf(graph, current);
 	     
@@ -172,13 +173,6 @@ public class Model {
 		return score;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

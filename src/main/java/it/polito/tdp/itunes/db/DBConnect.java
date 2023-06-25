@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-
+//giugno 
 public class DBConnect {
 
 	private static String jdbcURL = "jdbc:mysql://localhost/iTunes";

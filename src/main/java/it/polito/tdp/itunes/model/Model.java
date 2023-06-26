@@ -139,7 +139,7 @@ public class Model {
 				 this.bestPercorso= new ArrayList<>(parziale);  //con la new ho una NUOVA COPIA
 				
 			 }
-			 return; 
+			 return; // termina una solz, NON TUTTA LA RICORSIONE
 		}
 		
 		
